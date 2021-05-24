@@ -32,7 +32,11 @@ func main() {
 
 	var winner int = <-result
 	// This approach appears to behave similarly to just calling close(result) without the signal channel
-	stop <- true
+
+	for i := 0; i < 2; i++ {
+		stop <- true
+	}
+
 	waiter.Wait()
 	fmt.Printf("Winner was %d\n", winner)
 }
